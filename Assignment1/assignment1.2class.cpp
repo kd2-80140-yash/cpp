@@ -1,84 +1,66 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
-
-class Date {
-private:
-    int day;
-    int month;
-    int year;
-
-public:
-    void initDate() {
-        day = 0;
-        month = 0;
-        year = 0;
-    }
-
-    void printDateOnConsole() {
-        cout << "Date: " << day << "/" << month << "/" << year << endl;
-    }
-
-    void acceptDateFromConsole() {
-        cout << "Enter day (1-31): ";
-        cin >> day;
-        
-        cout << "Enter month (1-12): ";
-        cin >> month;
-        
-        cout << "Enter year (e.g., 2023): ";
-        cin >> year;
-    }
-
-    bool isLeapYear() {
-        if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
-            return true;
+class Date
+{
+    private:
+            int dd;
+            int mm;
+            int yy;
+    public:
+        void initDate()
+        {
+            this->dd=0;
+            this->mm=0;
+            this->yy=0;
         }
-        return false;
-    }
+        void acceptDateFromConsole()
+        {
+            cout<<"Enter day:";
+            cin>>this->dd;
+            cout<<"Enter month:";
+            cin>>this->mm;
+            cout<<"Enter year:";
+            cin>>this->yy;
+        }
+        void printDateOnConsole()
+        {
+            cout<<"Date is "<<this->dd<<"/"<<this->mm<<"/"<<this->yy<<endl;
+        }
+        bool isLeapYear()
+        {
+            if((this->yy%4==0 && this->yy%100!=0)||(this->yy%4==0 && this->yy%400==0))
+                return true; 
+            else
+                return false;
+        }
 };
-
-int main() {
-    Date myDate;
+int main()
+{
     int choice;
-    
-    myDate.initDate();
-    
-    do {
-        cout << "\nDate Operations Menu:" << endl;
-        cout << "1. Initialize Date" << endl;
-        cout << "2. Print Date" << endl;
-        cout << "3. Accept Date" << endl;
-        cout << "4. Check Leap Year" << endl;
-        cout << "5. Quit" << endl;
-        cout << "Enter your choice (1-5): ";
-        cin >> choice;
-        
-        switch (choice) {
+    Date d1;
+    do
+    {
+        cout<<"1.Print Default Date\n2.Print Date\n3.Accept Date\n4.See if Leap year\n0.Exit\n";
+        cout<<"Enter your choice:\n";
+        cin>>choice;
+        switch(choice)
+        {
             case 1:
-                myDate.initDate();
-                cout << "Date initialized." << endl;
-                break;
+                    d1.initDate();
+                    break;
             case 2:
-                myDate.printDateOnConsole();
-                break;
+                    d1.printDateOnConsole();
+                    break;
             case 3:
-                myDate.acceptDateFromConsole();
-                break;
+                    d1.acceptDateFromConsole();
+                    break;
             case 4:
-                if (myDate.isLeapYear()) {
-                    cout << "Leap Year!" << endl;
-                } else {
-                    cout << "Not a Leap Year!" << endl;
-                }
-                break;
-            case 5:
-                cout << "Goodbye!" << endl;
-                break;
-            default:
-                cout << "Invalid choice. Please try again." << endl;
-                break;
+                    if(d1.isLeapYear())
+                        printf("Yes, It is a Leap year\n");
+                    else
+                        printf("No, Not a leap year\n");
         }
-    } while (choice != 5);
-    
-    return 0;
+    } while (choice!=0);
+    return 0;    
+
 }
